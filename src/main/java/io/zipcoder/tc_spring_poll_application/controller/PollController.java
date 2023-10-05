@@ -48,6 +48,16 @@ public class PollController {
         return new ResponseEntity<>(p, HttpStatus.OK);
     }
 
+    @RequestMapping(value="/polls/{pollId}", method=RequestMethod.PUT)
+    public ResponseEntity<?> updatePoll(@RequestBody Poll poll, @PathVariable Long pollId){
+        Poll p = pollRepository.save(poll);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
+    @RequestMapping(value="/polls/{pollId}", method=RequestMethod.DELETE)
+    public ResponseEntity<?> deletePoll(@PathVariable Long pollId){
+        pollRepository.delete(pollId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }
